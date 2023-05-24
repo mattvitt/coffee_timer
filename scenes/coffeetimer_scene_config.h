@@ -1,0 +1,5 @@
+ADD_SCENE(coffeetimer, startscreen, Startscreen)
+ADD_SCENE(coffeetimer, menu, Menu)
+ADD_SCENE(coffeetimer, scene_1, Scene_1)
+ADD_SCENE(coffeetimer, scene_2, Scene_2)
+ADD_SCENE(coffeetimer, settings, Settings)

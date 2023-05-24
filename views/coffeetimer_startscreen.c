@@ -1,23 +1,23 @@
-#include "../boilerplate.h"
+#include "../coffeetimer.h"
 #include <furi.h>
 #include <furi_hal.h>
 #include <input/input.h>
 #include <gui/elements.h>
 
-struct BoilerplateStartscreen {
+struct CoffeetimerStartscreen {
     View* view;
-    BoilerplateStartscreenCallback callback;
+    CoffeetimerStartscreenCallback callback;
     void* context;
 };
 
 
 typedef struct {
     int some_value;
-} BoilerplateStartscreenModel;
+} CoffeetimerStartscreenModel;
 
-void boilerplate_startscreen_set_callback(
-    BoilerplateStartscreen* instance,
-    BoilerplateStartscreenCallback callback,
+void coffeetimer_startscreen_set_callback(
+    CoffeetimerStartscreen* instance,
+    CoffeetimerStartscreenCallback callback,
     void* context) {
     furi_assert(instance);
     furi_assert(callback);
@@ -25,7 +25,7 @@ void boilerplate_startscreen_set_callback(
     instance->context = context;
 }
 
-void boilerplate_startscreen_draw(Canvas* canvas, BoilerplateStartscreenModel* model) {
+void coffeetimer_startscreen_draw(Canvas* canvas, CoffeetimerStartscreenModel* model) {
     UNUSED(model);
     canvas_clear(canvas);
     canvas_set_color(canvas, ColorBlack);
@@ -37,22 +37,22 @@ void boilerplate_startscreen_draw(Canvas* canvas, BoilerplateStartscreenModel* m
     elements_button_center(canvas, "Start"); 
 }
 
-static void boilerplate_startscreen_model_init(BoilerplateStartscreenModel* const model) {
+static void coffeetimer_startscreen_model_init(CoffeetimerStartscreenModel* const model) {
     model->some_value = 1;
 }
 
-bool boilerplate_startscreen_input(InputEvent* event, void* context) {
+bool coffeetimer_startscreen_input(InputEvent* event, void* context) {
     furi_assert(context); 
-    BoilerplateStartscreen* instance = context;
+    CoffeetimerStartscreen* instance = context;
     if (event->type == InputTypeRelease) {
         switch(event->key) {
             case InputKeyBack:
                 with_view_model(
                     instance->view,
-                    BoilerplateStartscreenModel * model,
+                    CoffeetimerStartscreenModel * model,
                     {
                         UNUSED(model);
-                        instance->callback(BoilerplateCustomEventStartscreenBack, instance->context);
+                        instance->callback(CoffeetimerCustomEventStartscreenBack, instance->context);
                     },
                     true);
                 break;
@@ -63,10 +63,10 @@ bool boilerplate_startscreen_input(InputEvent* event, void* context) {
             case InputKeyOk:
                 with_view_model(
                     instance->view,
-                    BoilerplateStartscreenModel* model,
+                    CoffeetimerStartscreenModel* model,
                     {
                         UNUSED(model);
-                        instance->callback(BoilerplateCustomEventStartscreenOk, instance->context);
+                        instance->callback(CoffeetimerCustomEventStartscreenOk, instance->context);
                     },
                     true);
                 break;
@@ -77,38 +77,38 @@ bool boilerplate_startscreen_input(InputEvent* event, void* context) {
     return true;
 }
 
-void boilerplate_startscreen_exit(void* context) {
+void coffeetimer_startscreen_exit(void* context) {
     furi_assert(context);
 }
 
-void boilerplate_startscreen_enter(void* context) {
+void coffeetimer_startscreen_enter(void* context) {
     furi_assert(context);
-    BoilerplateStartscreen* instance = (BoilerplateStartscreen*)context;
+    CoffeetimerStartscreen* instance = (CoffeetimerStartscreen*)context;
     with_view_model(
         instance->view,
-        BoilerplateStartscreenModel * model,
+        CoffeetimerStartscreenModel * model,
         {
-            boilerplate_startscreen_model_init(model);
+            coffeetimer_startscreen_model_init(model);
         },
         true
     );
 }
 
-BoilerplateStartscreen* boilerplate_startscreen_alloc() {
-    BoilerplateStartscreen* instance = malloc(sizeof(BoilerplateStartscreen));
+CoffeetimerStartscreen* coffeetimer_startscreen_alloc() {
+    CoffeetimerStartscreen* instance = malloc(sizeof(CoffeetimerStartscreen));
     instance->view = view_alloc();
-    view_allocate_model(instance->view, ViewModelTypeLocking, sizeof(BoilerplateStartscreenModel));
+    view_allocate_model(instance->view, ViewModelTypeLocking, sizeof(CoffeetimerStartscreenModel));
     view_set_context(instance->view, instance); // furi_assert crashes in events without this
-    view_set_draw_callback(instance->view, (ViewDrawCallback)boilerplate_startscreen_draw);
-    view_set_input_callback(instance->view, boilerplate_startscreen_input);
-    //view_set_enter_callback(instance->view, boilerplate_startscreen_enter);
-    //view_set_exit_callback(instance->view, boilerplate_startscreen_exit);
+    view_set_draw_callback(instance->view, (ViewDrawCallback)coffeetimer_startscreen_draw);
+    view_set_input_callback(instance->view, coffeetimer_startscreen_input);
+    //view_set_enter_callback(instance->view, coffeetimer_startscreen_enter);
+    //view_set_exit_callback(instance->view, coffeetimer_startscreen_exit);
 
     with_view_model(
         instance->view,
-        BoilerplateStartscreenModel * model,
+        CoffeetimerStartscreenModel * model,
         {
-            boilerplate_startscreen_model_init(model);
+            coffeetimer_startscreen_model_init(model);
         },
         true
     );
@@ -116,12 +116,12 @@ BoilerplateStartscreen* boilerplate_startscreen_alloc() {
     return instance;
 }
 
-void boilerplate_startscreen_free(BoilerplateStartscreen* instance) {
+void coffeetimer_startscreen_free(CoffeetimerStartscreen* instance) {
     furi_assert(instance);
 
     with_view_model(
         instance->view,
-        BoilerplateStartscreenModel * model,
+        CoffeetimerStartscreenModel * model,
         {
             UNUSED(model);
         },
@@ -130,7 +130,7 @@ void boilerplate_startscreen_free(BoilerplateStartscreen* instance) {
     free(instance);
 }
 
-View* boilerplate_startscreen_get_view(BoilerplateStartscreen* instance) {
+View* coffeetimer_startscreen_get_view(CoffeetimerStartscreen* instance) {
     furi_assert(instance);
     return instance->view;
 }

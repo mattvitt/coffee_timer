@@ -1,4 +1,4 @@
-# Flipper Zero FAP Boilerplate
+# Flipper Zero FAP Coffeetimer
 
 ## What this is?
 Use this code as a foundation for developing Flipper Zero Applications, change the contents of this file when developing a new project

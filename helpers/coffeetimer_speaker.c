@@ -1,10 +1,10 @@
-#include "boilerplate_speaker.h"
-#include "../boilerplate.h"
+#include "coffeetimer_speaker.h"
+#include "../coffeetimer.h"
 
 #define NOTE_INPUT 587.33f
 
-void boilerplate_play_input_sound(void* context) {
-    Boilerplate* app = context;
+void coffeetimer_play_input_sound(void* context) {
+    Coffeetimer* app = context;
     if (app->speaker != 1) {
         return;
     }
@@ -15,8 +15,8 @@ void boilerplate_play_input_sound(void* context) {
     
 }
 
-void boilerplate_stop_all_sound(void* context) {
-    Boilerplate* app = context;
+void coffeetimer_stop_all_sound(void* context) {
+    Coffeetimer* app = context;
     if (app->speaker != 1) {
         return;
     }

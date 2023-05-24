@@ -1,9 +1,9 @@
-#include "boilerplate_haptic.h"
-#include "../boilerplate.h"
+#include "coffeetimer_haptic.h"
+#include "../coffeetimer.h"
 
 
-void boilerplate_play_happy_bump(void* context) {
-    Boilerplate* app = context;
+void coffeetimer_play_happy_bump(void* context) {
+    Coffeetimer* app = context;
     if (app->haptic != 1) {
         return;
     }
@@ -12,8 +12,8 @@ void boilerplate_play_happy_bump(void* context) {
     notification_message(app->notification, &sequence_reset_vibro);
 }
 
-void boilerplate_play_bad_bump(void* context) {
-    Boilerplate* app = context;
+void coffeetimer_play_bad_bump(void* context) {
+    Coffeetimer* app = context;
     if (app->haptic != 1) {
         return;
     }
@@ -22,8 +22,8 @@ void boilerplate_play_bad_bump(void* context) {
     notification_message(app->notification, &sequence_reset_vibro);
 }
 
-void boilerplate_play_long_bump(void* context) {
-    Boilerplate* app = context;
+void coffeetimer_play_long_bump(void* context) {
+    Coffeetimer* app = context;
     if (app->haptic != 1) {
         return;
     }
